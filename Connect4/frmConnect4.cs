@@ -85,22 +85,28 @@ namespace Connect4
         // deze methode wordt uitgevoerd als je op een knop klikt
         private void Btn_Click(object sender, EventArgs e)
         {
-            // Zorg dat het klikken op een knop
-            // Al een token toont onderaan links
-
-            // koppel de aangeklikte knop aan een variabele
+            // koppel aangeklikte knop aan variabele
             Button btn = (Button)sender;
 
-            // maak een nieuwe token aan
+            // huidige kolom (van aangeklikte knop)
+            // instellen via laatste karakter van button naam
+            // col wordt dus 0, 1, 2, 3, 4, 5 of 6
+            int col = Convert.ToInt32(btn.Name.Last().ToString());
 
-            // plaats de token op de laatste plaats van de eerste kolom
-
-
-            // plaats de token op de voorgrond
-            // t.BringToFront();
-
-            // testen of knoppen werken
-            //Debug.WriteLine("Geklikt!");
+            // onderaan beginnen controleren van huidige kolom
+            // zodra een 'Empty' State vakje gevonden wordt in de array
+            // vervangen door 'Red'State
+            for (int row = grid.GetLength(0) - 1; row >= 0; row--)
+            {
+                // als huidig vakje leeg is
+                if (grid[row,col] == State.Empty)
+                {
+                    // veranderen naar rood
+                    grid[row, col] = State.Red;
+                    // loop stoppen! anders blijft hij door doen
+                    break;
+                }
+            }
         }
 
         // Load event --> wordt automatisch uitgevoerd
