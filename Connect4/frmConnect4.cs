@@ -117,6 +117,29 @@ namespace Connect4
             }
         }
 
+        // methode om te controleren of 
+        // een player vier op een rij heeft
+        private bool CheckWinner(int col)
+        {
+            // verticaal
+            // enkel de eerste drie rijen
+            // zijn hier van tel om naar onder te controleren
+            for (int row = 0; row < 3; row++)
+            {
+                // enkel huidige kolom waar token gedropt werd controleren
+                if (grid[row,col] == player &&
+                    grid[row + 1, col] == player &&
+                    grid[row + 2, col] == player &&
+                    grid[row + 3, col] == player)
+                {
+                    MessageBox.Show("Gewonnen!");
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         // deze methode wordt uitgevoerd als je op een knop klikt
         private void Btn_Click(object sender, EventArgs e)
         {
@@ -146,6 +169,8 @@ namespace Connect4
             // opnieuw controleren wat de State van ieder vakje is
             // en op basis daarvan de gekleurde tokens plaatsen
             ShowTokens();
+            // winnaar controleren
+            CheckWinner(col);
             // speler veranderen
             ChangePlayer();
         }
