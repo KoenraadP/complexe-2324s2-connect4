@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(504, 411);
             this.Name = "frmConnect4";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.frmConnect4_Load);
             this.ResumeLayout(false);
 
         }
