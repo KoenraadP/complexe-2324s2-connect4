@@ -71,12 +71,36 @@ namespace Connect4
                 btn.Location = new Point(col * 60 + 50, 10);
                 // op form plaatsen
                 Controls.Add(btn);
+
+                // click event koppelen aan button
+                btn.Click += Btn_Click;
             }
 
             // button aanmaken
             // Button b = new Button();
             // button op form plaatsen
             // Controls.Add(b);
+        }
+
+        // deze methode wordt uitgevoerd als je op een knop klikt
+        private void Btn_Click(object sender, EventArgs e)
+        {
+            // Zorg dat het klikken op een knop
+            // Al een token toont onderaan links
+
+            // koppel de aangeklikte knop aan een variabele
+            Button btn = (Button)sender;
+
+            // maak een nieuwe token aan
+
+            // plaats de token op de laatste plaats van de eerste kolom
+
+
+            // plaats de token op de voorgrond
+            // t.BringToFront();
+
+            // testen of knoppen werken
+            //Debug.WriteLine("Geklikt!");
         }
 
         // Load event --> wordt automatisch uitgevoerd
