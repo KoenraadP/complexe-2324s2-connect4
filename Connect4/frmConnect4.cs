@@ -46,12 +46,28 @@ namespace Connect4
 
                     // token aanmaken
                     Token t = new Token();
-                    // standaard --> grijze tokens (vakjes)
-                    t.BackColor = Color.LightGray;
+
+                    // ieder vakje van het grid controleren op State
+                    // kleur aanpassen indien nodig
+                    switch (grid[row,col])
+                    {
+                        case State.Red:
+                            t.BackColor = Color.Red;
+                            break;
+                        case State.Yellow:
+                            t.BackColor = Color.Yellow;
+                            break;
+                        default:
+                            t.BackColor = Color.LightGray;
+                            break;
+                    }
+
                     // locatie van token instellen
                     t.Location = new Point(col * 60 + 50, row * 60 + 50);
                     // token op form plaatsen
                     Controls.Add(t);
+                    // zorgen dat nieuwe token 'vooraan' staat
+                    t.BringToFront();
                 }
             }
         }
@@ -107,6 +123,10 @@ namespace Connect4
                     break;
                 }
             }
+
+            // opnieuw controleren wat de State van ieder vakje is
+            // en op basis daarvan de gekleurde tokens plaatsen
+            ShowTokens();
         }
 
         // Load event --> wordt automatisch uitgevoerd
