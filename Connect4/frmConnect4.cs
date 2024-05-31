@@ -26,6 +26,8 @@ namespace Connect4
         // dit is ons code speelveld
         // 6 rijen, 7 kolommen
         State[,] grid = new State[6, 7];
+        // globale variabele om speler/kleur bij te houden
+        State player = State.Red;
 
         public frmConnect4()
         {
@@ -98,6 +100,23 @@ namespace Connect4
             // Controls.Add(b);
         }
 
+        // methode om player te wisselen
+        private void ChangePlayer()
+        {
+            // als speler momenteel rood is
+            // veranderen naar geel
+            if (player == State.Red)
+            {
+                player = State.Yellow;
+            }
+            // als speler niet rood is (dus geel)
+            // veranderen naar rood
+            else
+            {
+                player = State.Red;
+            }
+        }
+
         // deze methode wordt uitgevoerd als je op een knop klikt
         private void Btn_Click(object sender, EventArgs e)
         {
@@ -118,7 +137,7 @@ namespace Connect4
                 if (grid[row,col] == State.Empty)
                 {
                     // veranderen naar rood
-                    grid[row, col] = State.Red;
+                    grid[row, col] = player;
                     // loop stoppen! anders blijft hij door doen
                     break;
                 }
@@ -127,6 +146,8 @@ namespace Connect4
             // opnieuw controleren wat de State van ieder vakje is
             // en op basis daarvan de gekleurde tokens plaatsen
             ShowTokens();
+            // speler veranderen
+            ChangePlayer();
         }
 
         // Load event --> wordt automatisch uitgevoerd
